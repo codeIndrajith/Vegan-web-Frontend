@@ -68,7 +68,7 @@ function SignInForm() {
                 </div>
 
                 <div className='flex flex-col items-center justify-center mt-12'>
-                    <button className='px-4 py-2 bg-[#000259] rounded-md text-white'>Create Account</button>
+                    <button className='px-4 py-2 bg-[#000259] rounded-md text-white'>Sign In</button>
                     <p>Already have an account? <Link to="/signup">Sign In</Link></p>
                 </div>
             </div>

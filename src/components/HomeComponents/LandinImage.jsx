@@ -1,8 +1,11 @@
 import React from 'react'
+import landingImage from "../../images/landingImage.png"
 
 function LandinImage() {
   return (
-    <div>LandinImage</div>
+    <div className='w-full h-screen'>
+        <img src={landingImage} className='w-full h-auto object-cover' alt="landingImage" />
+    </div>
   )
 }
 

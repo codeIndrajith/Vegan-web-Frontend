@@ -9,7 +9,7 @@ import Footer from './HomeComponents/Footer'
 
 function Hero() {
   return (
-    <div>
+    <div className='px-10 py-4'>
       <Navbar />
       <LandinImage />
       <Product />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,8 +25,8 @@ function Navbar() {
         <p className='text-sm md:text-md cursor-pointer'>Shop</p>
         <p className='text-sm md:text-md cursor-pointer'>Community</p>
         <p className='text-sm md:text-md cursor-pointer'>My Delivery Details</p>
-        <button className='px-2 text-sm h-8 bg-black text-white rounded-md'>Sign In</button>
-        <button className='px-2 text-sm h-8 bg-black text-white rounded-md'>Sign Up</button>
+        <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/signin">Sign In</Link></button>
+        <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/signup">Sign Up</Link></button>
       </div>
 
       {/* Toggle Button for small/medium screens */}
@@ -48,8 +49,8 @@ function Navbar() {
           <p className='text-sm md:text-md cursor-pointer py-2'>Community</p>
           <p className='text-sm md:text-md cursor-pointer py-2'>My Delivery Details</p>
           <div className='flex gap-4'>
-          <button className='px-6 h-8 text-sm bg-black text-white rounded-md'>Sign In</button>
-          <button className='px-6 h-8 text-sm bg-black text-white rounded-md'>Sign Up</button>
+            <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/signin">Sign In</Link></button>
+            <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/signup">Sign Up</Link></button>
           </div>
         </div>
       )}

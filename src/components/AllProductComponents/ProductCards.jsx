@@ -167,7 +167,7 @@ function ProductCards({productId}) {
                         </div>
                         </div>
             </div>
-        </div>
+    </div>
   )
 }
 

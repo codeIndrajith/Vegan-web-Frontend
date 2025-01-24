@@ -27,7 +27,7 @@ function ProductPage() {
             </div>
             {/* Image section */}
             <div className='w-full flex items-center justify-center'>
-                <img className='w-52 md:w-72 h-auto object-cover animate-rotate' src={potato} alt="" />
+                <img className='w-52 md:w-72 h-auto object-cover' src={potato} alt="" />
             </div>
         </div>
     </div>

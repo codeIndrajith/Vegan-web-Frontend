@@ -1,11 +1,13 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
 import potato from '../../images/potato.png'
+import { Link } from 'react-router-dom'
 
-function ProductCards() {
+function ProductCards({productId}) {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
             <div className='bg-gradient-to-t from-[#BEF6A5] to-[#A8E367] rounded-md w-full p-4'>
+                <Link to={`/all-products/${productId}`}>
                         <div className='flex items-center justify-center'>
                         <img src={potato} className='w-auto h-auto object-cover' alt="" />
                         </div>
@@ -23,6 +25,7 @@ function ProductCards() {
                             </div>
                         </div>
                         </div>
+                </Link>
             </div>
 
             <div className='bg-gradient-to-t from-[#BEF6A5] to-[#A8E367] rounded-md w-full p-4'>

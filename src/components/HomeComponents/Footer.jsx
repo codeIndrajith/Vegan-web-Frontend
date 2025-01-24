@@ -15,7 +15,7 @@ function Footer() {
   ];
 
   return (
-    <div className="footer-container mt-64 sm:mt-24 lg:mt-4 text-center py-8 bg-white">
+    <div className="footer-container mt-8 text-center py-8 bg-white">
       {/* Title */}
       <h1 className="text-2xl lg:text-4xl font-bold mb-4">Meet the Masters :)</h1>
 

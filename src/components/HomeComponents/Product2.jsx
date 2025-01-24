@@ -1,5 +1,6 @@
 import React from 'react'
 import product2 from '../../images/product2.png'
+import { Link } from 'react-router-dom'
 
 function Product2() {
   return (
@@ -41,6 +42,10 @@ function Product2() {
                   <p className='text-sm text-gray-400'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eius veniam vero tenetur nemo qui quaerat ea assumenda vitae, voluptates consequatur quisquam officiis facere dolorum. Eveniet at aspernatur provident quaerat.</p>
                 </div>
               </div>
+          </div>
+
+          <div className='px-8 py-2 mt-8 w-full sm:w-auto rounded-md bg-[#6BB62D] text-center'>
+             <Link to="/all-products2">View All</Link>
           </div>
         </div>
   )

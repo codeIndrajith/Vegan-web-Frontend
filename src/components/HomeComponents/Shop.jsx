@@ -1,6 +1,7 @@
 import React from 'react'
 import shop from '../../images/shop.png'
 import { FaStar } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Shop() {
   return (
@@ -102,6 +103,10 @@ function Shop() {
                   </div>
                 </div>
               </div>
+          </div>
+
+          <div className='px-8 py-2 mt-8 w-full sm:w-auto rounded-md bg-[#6BB62D] text-center'>
+             <Link to="/all-shops">View All</Link>
           </div>
         </div>
   )

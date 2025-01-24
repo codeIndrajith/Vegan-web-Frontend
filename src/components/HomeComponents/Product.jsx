@@ -1,6 +1,7 @@
 import React from 'react'
 import potato from '../../images/potato.png'
 import { FaStar } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Product() {
   return (
@@ -90,6 +91,10 @@ function Product() {
               </div>
             </div>
           </div>
+      </div>
+
+      <div className='px-8 py-2 mt-8 w-full sm:w-auto rounded-md bg-[#6BB62D] text-center'>
+        <Link to="/all-products">View All</Link>
       </div>
     </div>
   )

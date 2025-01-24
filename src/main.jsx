@@ -10,6 +10,7 @@ import {
 } from "react-router-dom"
 import AuthPage from './pages/AuthPage.jsx'
 import HomePage from './pages/HomePage.jsx'
+import AllProductsPage from './pages/AllProductsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
         <Route index={true} path='/' element={<HomePage />} />
         <Route path='/signin' element={<AuthPage />} />
         <Route path='/signup' element={<AuthPage />} />
+        <Route path='/all-products' element={<AllProductsPage />} />
     </Route>
   )
 )

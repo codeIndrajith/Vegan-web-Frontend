@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../images/logo.png'
-import potato from '../images/potato.png'
+import logo from '../../images/logo.png'
+import potato from '../../images/potato.png'
 
 function ProductPage() {
   return (

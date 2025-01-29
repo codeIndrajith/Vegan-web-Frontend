@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../images/logo.png'
-import ShopCards from '../components/AllShopComponents/ShopCards'
+import logo from '../../images/logo.png'
+import ShopCards from '../../components/AllShopComponents/ShopCards'
 
 function AllShopPage() {
   return (

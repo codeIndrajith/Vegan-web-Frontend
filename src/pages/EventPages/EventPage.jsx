@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from "../images/logo.png"
-import UpcomingEventImage from "../images/UpcomingEvent.png"
+import logo from "../../images/logo.png"
+import UpcomingEventImage from "../../images/UpcomingEvent.png"
 
 function EventPage() {
   return (

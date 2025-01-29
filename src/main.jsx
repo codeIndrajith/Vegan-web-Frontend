@@ -10,14 +10,14 @@ import {
 } from "react-router-dom"
 import AuthPage from './pages/AuthPage.jsx'
 import HomePage from './pages/HomePage.jsx'
-import AllProductsPage from './pages/AllProductsPage.jsx'
-import ProductPage from './pages/ProductPage.jsx'
-import AllShopPage from './pages/AllShopPage.jsx'
-import ShopPage from './pages/ShopPage.jsx'
-import AllFoodsPage from './pages/AllFoodsPage.jsx'
-import FoodPage from './pages/FoodPage.jsx'
-import AllUpcomingEventsPage from './pages/AllUpcomingEventsPage.jsx'
-import EventPage from './pages/EventPage.jsx'
+import AllProductsPage from './pages//ProductPages/AllProductsPage.jsx'
+import ProductPage from './pages/ProductPages/ProductPage.jsx'
+import AllShopPage from './pages/ShopPages/AllShopPage.jsx'
+import ShopPage from './pages/ShopPages/ShopPage.jsx'
+import AllFoodsPage from './pages/FoodPages/AllFoodsPage.jsx'
+import FoodPage from './pages/FoodPages/FoodPage.jsx'
+import AllUpcomingEventsPage from './pages/EventPages/AllUpcomingEventsPage.jsx'
+import EventPage from './pages/EventPages/EventPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

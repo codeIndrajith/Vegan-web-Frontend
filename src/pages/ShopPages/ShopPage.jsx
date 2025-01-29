@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../images/logo.png'
-import shop from '../images/shop.png'
+import logo from '../../images/logo.png'
+import shop from '../../images/shop.png'
 import { FaStar } from 'react-icons/fa'
-import potato from '../images/potato.png'
+import potato from '../../images/potato.png'
 import { Link } from 'react-router-dom'
 
 function ShopPage({productId}) {

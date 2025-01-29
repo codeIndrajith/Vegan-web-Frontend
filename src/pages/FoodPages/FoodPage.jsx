@@ -1,6 +1,6 @@
 import React from 'react'
-import food from "../images/food.png"
-import logo from "../images/logo.png"
+import food from "../../images/food.png"
+import logo from "../../images/logo.png"
 
 function FoodPage() {
   return (

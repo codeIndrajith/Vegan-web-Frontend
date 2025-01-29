@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from '../images/logo.png'
-import ProductCards from '../components/AllProductComponents/ProductCards'
+import logo from '../../images/logo.png'
+import ProductCards from '../../components/AllProductComponents/ProductCards'
 
 function AllProductsPage() {
   return (

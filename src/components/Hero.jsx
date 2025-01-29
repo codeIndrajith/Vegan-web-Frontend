@@ -4,7 +4,7 @@ import LandinImage from './HomeComponents/LandinImage'
 import Product from './HomeComponents/Product'
 import Shop from './HomeComponents/Shop'
 import Food from './HomeComponents/Food'
-import Product2 from './HomeComponents/Product2'
+import UpcomingEvent from './HomeComponents/UpcomingEvent'
 import Footer from './HomeComponents/Footer'
 
 function Hero() {
@@ -15,7 +15,7 @@ function Hero() {
       <Product />
       <Shop />
       <Food />
-      <Product2 />
+      <UpcomingEvent />
       <Footer />
     </div>
   )

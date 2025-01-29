@@ -16,6 +16,7 @@ import AllShopPage from './pages/AllShopPage.jsx'
 import ShopPage from './pages/ShopPage.jsx'
 import AllFoodsPage from './pages/AllFoodsPage.jsx'
 import FoodPage from './pages/FoodPage.jsx'
+import AllUpcomingEventsPage from './pages/AllUpcomingEventsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route path='/all-shops/:shopId' element={<ShopPage />} />
         <Route path='/all-foods' element={<AllFoodsPage />} />
         <Route path='/all-foods/:foodId' element={<FoodPage />} />
+        <Route path='/all-events' element={<AllUpcomingEventsPage />} />
     </Route>
   )
 )

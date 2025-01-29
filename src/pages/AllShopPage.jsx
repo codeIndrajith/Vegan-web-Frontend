@@ -12,7 +12,7 @@ function AllShopPage() {
 
     <ShopCards />
 
-    <div className='flex items-center gap-8 justify-center mt-4'>
+    <div className='flex items-center gap-2 justify-center mt-4'>
         <button className='bg-gray-200 px-8 py-2 rounded-lg'>Previous</button>
         <p>1 Page</p>
         <button className='bg-gray-200 px-8 py-2 rounded-lg'>Next</button>

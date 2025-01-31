@@ -18,6 +18,7 @@ import AllFoodsPage from './pages/FoodPages/AllFoodsPage.jsx'
 import FoodPage from './pages/FoodPages/FoodPage.jsx'
 import AllUpcomingEventsPage from './pages/EventPages/AllUpcomingEventsPage.jsx'
 import EventPage from './pages/EventPages/EventPage.jsx'
+import ManufactureDashboardPage from './pages/manufacture-dashboard/ManufactureDashboardPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,9 @@ const router = createBrowserRouter(
         <Route path='/all-foods/:foodId' element={<FoodPage />} />
         <Route path='/all-events' element={<AllUpcomingEventsPage />} />
         <Route path='/all-events/:eventId' element={<EventPage />} />
+
+        {/* Manufacture Routes */}
+        <Route path='/manufacture' element={<ManufactureDashboardPage />} />
     </Route>
   )
 )

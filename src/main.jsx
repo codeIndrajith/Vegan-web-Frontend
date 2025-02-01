@@ -19,6 +19,7 @@ import FoodPage from './pages/FoodPages/FoodPage.jsx'
 import AllUpcomingEventsPage from './pages/EventPages/AllUpcomingEventsPage.jsx'
 import EventPage from './pages/EventPages/EventPage.jsx'
 import ManufactureDashboardPage from './pages/manufacture-dashboard/ManufactureDashboardPage.jsx'
+import ResturantManufactureDashboard from './pages/resturant-manufacture/resturantManufactureDashboard.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,9 @@ const router = createBrowserRouter(
 
         {/* Manufacture Routes */}
         <Route path='/manufacture' element={<ManufactureDashboardPage />} />
+
+      {/* resturant-manufacture Routes */}
+        <Route path='/resturant-manufacture' element={<ResturantManufactureDashboard />} />
     </Route>
   )
 )

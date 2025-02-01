@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ProductCards from '../../components/AllProductComponents/ProductCards'
 import potato from '../../images/potato.png'
 
-const ManufactureDashboardPage = () => {
+const ProductManufactureDashboard = () => {
   const [word , setWord] = useState("all-products");
 
   const submitHandler = (e) => {
@@ -150,4 +150,4 @@ const ManufactureDashboardPage = () => {
   )
 }
 
-export default ManufactureDashboardPage
+export default ProductManufactureDashboard

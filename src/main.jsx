@@ -18,8 +18,8 @@ import AllFoodsPage from './pages/FoodPages/AllFoodsPage.jsx'
 import FoodPage from './pages/FoodPages/FoodPage.jsx'
 import AllUpcomingEventsPage from './pages/EventPages/AllUpcomingEventsPage.jsx'
 import EventPage from './pages/EventPages/EventPage.jsx'
-import ManufactureDashboardPage from './pages/manufacture-dashboard/ManufactureDashboardPage.jsx'
 import ResturantManufactureDashboard from './pages/resturant-manufacture/resturantManufactureDashboard.jsx'
+import ProductManufactureDashboard from './pages/product-manufacture/productManufactureDashboard.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +37,7 @@ const router = createBrowserRouter(
         <Route path='/all-events/:eventId' element={<EventPage />} />
 
         {/* Manufacture Routes */}
-        <Route path='/manufacture' element={<ManufactureDashboardPage />} />
+        <Route path='/product-manufacture' element={<ProductManufactureDashboard />} />
 
       {/* resturant-manufacture Routes */}
         <Route path='/resturant-manufacture' element={<ResturantManufactureDashboard />} />

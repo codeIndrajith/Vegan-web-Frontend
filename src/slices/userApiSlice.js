@@ -12,10 +12,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
 
         register: builder.mutation({
-            query: (data) => ({
+            query: (formData) => ({
                 url: `${USERS_URL}/register`,
                 method: 'POST',
-                body: data
+                body: formData
             })
         })
     })

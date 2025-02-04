@@ -4,6 +4,10 @@ import potato from '../../images/potato.png'
 import { useAddProductMutation, useGetAllProductQuery } from '../../slices/productManufactureApiSlice'
 import toast from 'react-hot-toast'
 import Loader from '../../components/Loader'
+import { useLogoutMutation } from '../../slices/userApiSlice'
+import { useDispatch } from 'react-redux'
+import { clearCredentials } from '../../slices/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const ProductManufactureDashboard = () => {
   const {data: products, isLoading: productLoading, error, refetch} = useGetAllProductQuery(100);
@@ -17,8 +21,13 @@ const ProductManufactureDashboard = () => {
   })
   const [word , setWord] = useState("all-products");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const [addProduct, isLoading] = useAddProductMutation();
+
+  const [logout] = useLogoutMutation();
 
   const handleChnage = (e) => {
     const { name, value } = e.target;
@@ -49,6 +58,20 @@ const ProductManufactureDashboard = () => {
     }
   }
 
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+      console.log(res)
+      if(res.data.success) {
+        dispatch(clearCredentials(res.data))
+        toast.success("Logout complete")
+        navigate('/signin')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <>
@@ -61,7 +84,7 @@ const ProductManufactureDashboard = () => {
           <div className='bg-[#1B57C7] h-auto lg:h-screen w-full lg:w-1/4 flex flex-col gap-8 items-start py-32 px-4'>
             <h1 className='text-white text-sm lg:text-lg cursor-pointer' onClick={() => setWord("products")}>Addedd Products</h1>
             <h1 className='text-white text-sm lg:text-lg cursor-pointer' onClick={() => setWord("orders")}>Orders</h1>
-            <h1 className='text-white text-sm lg:text-lg cursor-pointer'>Log Out</h1>
+            <h1 className='text-white text-sm lg:text-lg cursor-pointer' onClick={handleLogout}>Log Out</h1>
           </div>
           <div className='w-full lg:w-3/4 py-1 lg:py-2'>
             <div className='flex items-center justify-between px-4'>

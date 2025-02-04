@@ -6,7 +6,7 @@ import Loader from '../../components/Loader';
 
 function AllProductsPage() {
   const [page , setPage] = useState(1)
-  const [limit , setLimit] = useState(2)
+  const [limit , setLimit] = useState(6)
   const {data: products, isLoading: productLoading, error, refetch} = useGetAllProductQuery({page, limit});
 
   const handleNext = () => {

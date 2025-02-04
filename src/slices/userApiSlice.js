@@ -17,7 +17,7 @@ export const usersApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: formData
             })
-        })
+        }),
     })
 })
 

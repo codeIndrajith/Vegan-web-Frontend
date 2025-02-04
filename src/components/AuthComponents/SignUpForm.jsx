@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useRegisterMutation } from '../../slices/userApiSlice'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../../slices/authSlice'
+import toast from 'react-hot-toast'
 
 function SignUpForm() {
     const [formData, setFormData] = useState({
@@ -34,7 +35,7 @@ function SignUpForm() {
         console.log(formData)
 
         if(formData.password !== formData.confirmPassword) {
-            alert("Password do not match")
+            toast.error("password do not match")
         } else {
             const { confirmPassword, ...formDatatoSend } = formData;
             try {
@@ -42,7 +43,7 @@ function SignUpForm() {
                 if(res.success) {
                     dispatch(setCredentials(res.user))
                 }
-                alert("Register complete")
+                toast.success("Register complete")
                 if(formData.role === 'user') {
                     navigate('/')
                 } else if(formData.role === 'productManufacture') {
@@ -70,35 +71,35 @@ function SignUpForm() {
                 <div className='grid grid-cols-2 gap-4'>
                     <div className='flex flex-col'>
                         <label>First Name</label>
-                        <input required name="firstName" value={formData.firstName} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="text" />
+                        <input required name="firstName" value={formData.firstName} onChange={handleChange} placeholder="Add Firstname" className='border border-green-500 pl-4 rounded-md h-8' type="text" />
                     </div>
                     <div className='flex flex-col'>
                         <label>Last Name</label>
-                        <input required name="lastName" value={formData.lastName} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="text" />
+                        <input required name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Add Lastname" className='border border-green-500 pl-4 rounded-md h-8' type="text" />
                     </div>
                     <div className='flex flex-col'>
                         <label>NIC</label>
-                        <input required name="nic" value={formData.nic} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="text" />
+                        <input required name="nic" value={formData.nic} onChange={handleChange} placeholder="Add NIC" className='border border-green-500 pl-4 rounded-md h-8' type="text" />
                     </div>
                     <div className='flex flex-col'>
                         <label>Contact Number</label>
-                        <input required name="contactNumber" value={formData.contactNumber} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="number" />
+                        <input required name="contactNumber" value={formData.contactNumber} onChange={handleChange} placeholder="Add Contact Number" className='border border-green-500 pl-4 rounded-md h-8' type="number" />
                     </div>
                 </div>
 
                 <div className='flex flex-col mt-4'>
                     <label>Email</label>
-                    <input required name="email" value={formData.email} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="email" />
+                    <input required name="email" value={formData.email} onChange={handleChange} placeholder="Add Email" className='border border-green-500 pl-4 rounded-md h-8' type="email" />
                 </div>
 
                 <div className='grid grid-cols-2 gap-4 mt-4'>
                     <div className='flex flex-col'>
                         <label>Password</label>
-                        <input required name="password" value={formData.password} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="password" />
+                        <input required name="password" value={formData.password} onChange={handleChange} placeholder="Add Password" className='border border-green-500 pl-4 rounded-md h-8' type="password" />
                     </div>
                     <div className='flex flex-col'>
                         <label>Confirm Password</label>
-                        <input required name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className='border border-green-500 rounded-md h-8' type="password" />
+                        <input required name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Add Confirm Password" className='border border-green-500 pl-4 rounded-md h-8' type="password" />
                     </div>
                 </div>
 

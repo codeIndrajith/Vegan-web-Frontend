@@ -1,10 +1,12 @@
 import HomePage from "./pages/HomePage"
 import { Outlet } from "react-router-dom"
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <>
+      <Toaster />
       <Outlet />
     </>
   )

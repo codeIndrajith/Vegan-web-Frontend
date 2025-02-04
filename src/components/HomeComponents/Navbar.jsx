@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
 import logo from '../../images/logo.png';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLogoutMutation } from '../../slices/userApiSlice';
+import { clearCredentials } from '../../slices/authSlice';
+import toast from 'react-hot-toast';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { userInfo } = useSelector((state) => state.auth);
 
+  const [logout , isLoading] = useLogoutMutation();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const handleLogout = async (e) => {
+    try {
+      const res = await logout();
+      console.log(res)
+      if(res.data.success) {
+        dispatch(clearCredentials(res.data))
+        toast.success("Logout complete")
+        navigate('/signin')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className='flex items-center justify-between w-full h-[60px] px-4 bg-white'>
@@ -30,7 +52,7 @@ function Navbar() {
         <p className='text-sm md:text-md cursor-pointer'>My Delivery Details</p>
         {userInfo ? (
             <div>
-              <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/logout">Log out</Link></button>
+              <button onClick={handleLogout} className='p-2 text-sm bg-black text-white rounded-md'>Log out</button>
             </div>
           ): (
             <div className='flex gap-4'>
@@ -61,7 +83,7 @@ function Navbar() {
           <p className='text-sm md:text-md cursor-pointer py-2'>My Delivery Details</p>
           {userInfo ? (
             <div>
-             <button className='p-2 text-sm bg-black text-white rounded-md'><Link to="/logout">Log out</Link></button>
+             <button onClick={handleLogout} className='p-2 text-sm bg-black text-white rounded-md'>Log out</button>
             </div>
           ): (
             <div className='flex gap-4'>

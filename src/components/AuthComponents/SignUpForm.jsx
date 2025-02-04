@@ -32,7 +32,10 @@ function SignUpForm() {
 
     const registerUsers = async (e) => {
         e.preventDefault();
-        console.log(formData)
+        if(formData.role === "") {
+            toast.error("Select your role")
+            return;
+        }
 
         if(formData.password !== formData.confirmPassword) {
             toast.error("password do not match")

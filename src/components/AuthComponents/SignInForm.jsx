@@ -27,6 +27,11 @@ function SignInForm() {
     const handleSignIn = async (e) => {
         e.preventDefault();
 
+        if(formData.role === "") {
+            toast.error("Select your role")
+            return;
+        }
+
         try {
             const res = await login(formData).unwrap();
             if(res.success) {

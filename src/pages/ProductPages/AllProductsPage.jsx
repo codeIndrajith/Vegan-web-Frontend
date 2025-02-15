@@ -27,44 +27,45 @@ function AllProductsPage() {
   };
   return (
     <>
-      {productLoading ? (
-        <Loader />
-      ) : error ? (
-        <p>Error</p>
-      ) : (
-        <div className="px-10 py-4 w-full h-screen">
-          <div className="flex items-center justify-start gap-8">
-            <img className="w-24 h-auto object-cover" src={logo} alt="logo" />
-            <h1 className="text-2xl md:text-3xl mb-8 font-bold">
-              Vegan Delight Near Me
-            </h1>
-          </div>
-
-          <ProductCards products={products?.data} />
-
-          <div className="flex items-center gap-2 justify-center mt-4">
-            <button
-              onClick={handlePrevious}
-              disabled={!products?.pagination?.prev}
-              className={`bg-gray-200 px-8 py-2 rounded-sm ${
-                !products?.pagination?.prev ? "hidden" : ""
-              }`}
-            >
-              Prev
-            </button>
-            <p>{page} page</p>
-            <button
-              onClick={handleNext}
-              disabled={!products?.pagination?.next}
-              className={`bg-gray-200 px-8 py-2 rounded-sm ${
-                !products?.pagination?.next ? "hidden" : ""
-              }`}
-            >
-              Next
-            </button>
-          </div>
+      <div className="px-10 py-4 w-full h-screen">
+        <div className="flex items-center justify-start gap-8">
+          <img className="w-24 h-auto object-cover" src={logo} alt="logo" />
+          <h1 className="text-2xl md:text-3xl mb-8 font-bold">
+            Vegan Delight Near Me
+          </h1>
         </div>
-      )}
+        {productLoading ? (
+          <Loader />
+        ) : error ? (
+          <p>Error</p>
+        ) : (
+          <>
+            <ProductCards products={products?.data} />
+
+            <div className="flex items-center gap-2 justify-center mt-4">
+              <button
+                onClick={handlePrevious}
+                disabled={!products?.pagination?.prev}
+                className={`bg-gray-200 px-8 py-2 rounded-sm ${
+                  !products?.pagination?.prev ? "hidden" : ""
+                }`}
+              >
+                Prev
+              </button>
+              <p>{page} page</p>
+              <button
+                onClick={handleNext}
+                disabled={!products?.pagination?.next}
+                className={`bg-gray-200 px-8 py-2 rounded-sm ${
+                  !products?.pagination?.next ? "hidden" : ""
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 }

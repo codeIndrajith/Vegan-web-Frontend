@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../../images/logo.png";
 import ShopCards from "../../components/AllShopComponents/ShopCards";
 import { useGetAllShopsQuery } from "../../slices/resturantManufactureApiSlice";
+import Loader from "../../components/Loader";
 
 function AllShopPage() {
   const [page, setPage] = useState(1);
@@ -12,8 +13,6 @@ function AllShopPage() {
     error,
     refetch,
   } = useGetAllShopsQuery({ page, limit });
-
-  console.log(shops);
 
   const handleNext = () => {
     if (shops?.pagination?.next) {
@@ -35,29 +34,39 @@ function AllShopPage() {
         </h1>
       </div>
 
-      <ShopCards shops={shops?.data} />
+      <>
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <p>Data not found</p>
+        ) : (
+          <>
+            <ShopCards shops={shops?.data} />
 
-      <div className="flex items-center gap-2 justify-center mt-4">
-        <button
-          onClick={handlePrevious}
-          disabled={!shops?.pagination?.prev}
-          className={`bg-gray-200 px-8 py-2 rounded-sm ${
-            !shops?.pagination?.prev ? "hidden" : ""
-          }`}
-        >
-          Prev
-        </button>
-        <p>{page} page</p>
-        <button
-          onClick={handleNext}
-          disabled={!shops?.pagination?.next}
-          className={`bg-gray-200 px-8 py-2 rounded-sm ${
-            !shops?.pagination?.next ? "hidden" : ""
-          }`}
-        >
-          Next
-        </button>
-      </div>
+            <div className="flex items-center gap-2 justify-center mt-4">
+              <button
+                onClick={handlePrevious}
+                disabled={!shops?.pagination?.prev}
+                className={`bg-gray-200 px-8 py-2 rounded-sm ${
+                  !shops?.pagination?.prev ? "hidden" : ""
+                }`}
+              >
+                Prev
+              </button>
+              <p>{page} page</p>
+              <button
+                onClick={handleNext}
+                disabled={!shops?.pagination?.next}
+                className={`bg-gray-200 px-8 py-2 rounded-sm ${
+                  !shops?.pagination?.next ? "hidden" : ""
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          </>
+        )}
+      </>
     </div>
   );
 }

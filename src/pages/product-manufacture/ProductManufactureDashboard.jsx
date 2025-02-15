@@ -8,17 +8,18 @@ import {
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader";
 import { useLogoutMutation } from "../../slices/userApiSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCredentials } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const ProductManufactureDashboard = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const {
     data: products,
     isLoading: productLoading,
     error,
     refetch,
-  } = useGetAllProductQuery({ page: 1, limit: 100 });
+  } = useGetAllProductQuery({ page: 1, limit: 100, owner: userInfo.userId });
 
   const [formData, setFormData] = useState({
     image: "",

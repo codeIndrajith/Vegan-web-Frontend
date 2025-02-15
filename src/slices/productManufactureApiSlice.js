@@ -12,10 +12,18 @@ export const productManufactureApiSlice = apiSlice.injectEndpoints({
     }),
 
     getAllProduct: builder.query({
-      query: ({ page, limit }) => ({
-        url: `${PRODUCT_MANUFACTURE_URL}?page=${page}&&limit=${limit}`,
-        method: "GET",
-      }),
+      query: ({ page, limit, owner }) => {
+        const queryParams = new URLSearchParams();
+
+        if (page) queryParams.append("page", page);
+        if (limit) queryParams.append("limit", limit);
+        if (owner) queryParams.append("owner", owner);
+
+        return {
+          url: `${PRODUCT_MANUFACTURE_URL}?${queryParams.toString()}`,
+          method: "GET",
+        };
+      },
     }),
 
     getProduct: builder.query({

@@ -4,7 +4,7 @@ import food from "../../images/food.png";
 
 function FoodCards({ foods }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {foods &&
         foods.map((food) => (
           <Link key={food._id} to={`/all-foods/${food._id}`}>
@@ -16,7 +16,9 @@ function FoodCards({ foods }) {
               />
               <div className="flex flex-col items-center justify-center px-8">
                 <h1>{food.productName}</h1>
-                <p className="text-sm text-gray-400">{food.description}</p>
+                <p className="text-sm text-gray-400 line-clamp-2">
+                  {food.description}
+                </p>
                 <h2 className="text-md font-bold">$ {food.productPrice}</h2>
 
                 <button className="px-8 py-2 bg-[#5FAA46] rounded-2xl text-white">

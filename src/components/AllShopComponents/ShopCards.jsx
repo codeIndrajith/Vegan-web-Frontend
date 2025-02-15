@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 function ShopCards({ shops }) {
   return (
     <div className="">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 rounded-lg w-full p-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg w-full p-2">
         {shops &&
           shops.map((shop) => (
             <Link key={shop._id} to={`/all-shops/${shop._id}`} state={shop}>

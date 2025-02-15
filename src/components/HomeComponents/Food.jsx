@@ -9,10 +9,10 @@ function Food() {
     isLoading: foodsLoading,
     error,
     refetch,
-  } = useGetAllFoodsQuery({ page: 1, limit: 6 });
+  } = useGetAllFoodsQuery({ page: 1, limit: 4 });
 
   return (
-    <div className="w-full flex flex-col mt-8 lg:flex-row items-center justify-between">
+    <div className="w-full flex flex-col mt-8 gap-14 lg:flex-row items-center justify-between">
       <div className="py-8 flex flex-col items-center lg:items-start justify-center">
         <h1 className="text-3xl lg:text-6xl font-bold mb-4">
           Step in to Vegan Shoping
@@ -23,7 +23,7 @@ function Food() {
       </div>
 
       <div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* cards */}
           {foods &&
             foods.data.map((food) => (
@@ -38,7 +38,9 @@ function Food() {
                 />
                 <div className="flex flex-col items-center justify-center px-8">
                   <h1>{food.productName}</h1>
-                  <p className="text-sm text-gray-400">{food.description}</p>
+                  <p className="text-sm text-gray-400 line-clamp-2">
+                    {food.description}
+                  </p>
                   <h2 className="text-md font-bold">$ {food.productPrice}</h2>
 
                   <button className="px-8 py-2 bg-[#5FAA46] rounded-2xl text-white">

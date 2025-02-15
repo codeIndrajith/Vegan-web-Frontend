@@ -12,18 +12,25 @@ export const resturantManufactureApiSlice = apiSlice.injectEndpoints({
     }),
 
     getAllShops: builder.query({
-      query: ({ page, limit, userId }) => {
+      query: ({ page, limit, owner }) => {
         const queryParams = new URLSearchParams();
 
         if (page) queryParams.append("page", page);
         if (limit) queryParams.append("limit", limit);
-        if (userId) queryParams.append("owner", userId);
+        if (owner) queryParams.append("owner", owner);
 
         return {
           url: `${RESTURANT_MANUFACTURE_URL}/shops?${queryParams.toString()}`,
           method: "GET",
         };
       },
+    }),
+
+    getAllShopsName: builder.query({
+      query: ({ owner }) => ({
+        url: `${RESTURANT_MANUFACTURE_URL}/shops?limit=${100}&select=shopName&owner=${owner}`,
+        method: "GET",
+      }),
     }),
 
     addFood: builder.mutation({
@@ -35,10 +42,18 @@ export const resturantManufactureApiSlice = apiSlice.injectEndpoints({
     }),
 
     getAllFoods: builder.query({
-      query: ({ page, limit }) => ({
-        url: `${RESTURANT_MANUFACTURE_URL}/foods?page=${page}&&limit=${limit}`,
-        method: "GET",
-      }),
+      query: ({ page, limit, owner }) => {
+        const queryParams = new URLSearchParams();
+
+        if (page) queryParams.append("page", page);
+        if (limit) queryParams.append("limit", limit);
+        if (owner) queryParams.append("owner", owner);
+
+        return {
+          url: `${RESTURANT_MANUFACTURE_URL}/foods?${queryParams.toString()}`,
+          method: "GET",
+        };
+      },
     }),
 
     getFood: builder.query({
@@ -53,6 +68,7 @@ export const resturantManufactureApiSlice = apiSlice.injectEndpoints({
 export const {
   useAddShopMutation,
   useGetAllShopsQuery,
+  useGetAllShopsNameQuery,
   useAddFoodMutation,
   useGetAllFoodsQuery,
   useGetFoodQuery,

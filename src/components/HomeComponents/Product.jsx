@@ -11,7 +11,9 @@ function Product() {
     isLoading: productLoading,
     error,
     refetch,
-  } = useGetAllProductQuery(4);
+  } = useGetAllProductQuery({ page: 1, limit: 4 });
+
+  console.log(products);
 
   return (
     <>

@@ -10,12 +10,15 @@ import { clearCredentials } from "../../slices/authSlice";
 import {
   useAddFoodMutation,
   useAddShopMutation,
+  useGetAllFoodsQuery,
+  useGetAllShopsNameQuery,
   useGetAllShopsQuery,
 } from "../../slices/resturantManufactureApiSlice";
 import Loader from "../../components/Loader";
 
 const ResturantManufactureDashboard = () => {
   const [word, setWord] = useState("shops");
+  const { userInfo } = useSelector((state) => state.auth);
 
   const [shopFormData, setShopFormData] = useState({
     image: "",
@@ -26,14 +29,35 @@ const ResturantManufactureDashboard = () => {
     services: "",
   });
 
-  const { userInfo } = useSelector((state) => state.auth);
+  const [foodFormData, setFoodFormData] = useState({
+    shop: "",
+    foodImage: "",
+    productName: "",
+    productPrice: "",
+    description: "",
+    productIncludes: "",
+  });
 
   const {
     data: shops,
     isLoading: shopsLoading,
     error,
     refetch,
-  } = useGetAllShopsQuery({ page: 1, limit: 100, owner: userInfo._id });
+  } = useGetAllShopsQuery({ page: 1, limit: 100, owner: userInfo.userId });
+
+  const {
+    data: shopNames,
+    isLoading: shopNamesLoading,
+    error: shopNameErrors,
+  } = useGetAllShopsNameQuery({ owner: userInfo.userId });
+
+  const {
+    data: foods,
+    isLoading: foodLoading,
+    error: foodError,
+    refetch: foodRefetch,
+  } = useGetAllFoodsQuery({ page: 1, limit: 200, owner: userInfo.userId });
+
   const [logout, isLoading] = useLogoutMutation();
 
   const [addShop] = useAddShopMutation();
@@ -55,13 +79,31 @@ const ResturantManufactureDashboard = () => {
     }
   };
 
-  const addFoodHandler = (e) => {
-    e.preventDefault();
+  const addFoodHandler = async () => {
+    try {
+      const response = await addFood(foodFormData);
+      console.log(response);
+      if (response) {
+        toast.success("Product Add Success");
+
+        refetch();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const shopChangeHandler = (e) => {
     const { name, value } = e.target;
     setShopFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const foodChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFoodFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -253,7 +295,17 @@ const ResturantManufactureDashboard = () => {
               </button>
             </div>
             <div className="h-auto">
-              <FoodCards />
+              <>
+                {foodLoading ? (
+                  <Loader />
+                ) : foodError ? (
+                  <p>Food not found</p>
+                ) : (
+                  <div className="p-4 h-auto overflow-y-auto">
+                    <FoodCards foods={foods?.data} />
+                  </div>
+                )}
+              </>
             </div>
           </div>
         ) : word === "add-food" ? (
@@ -268,12 +320,37 @@ const ResturantManufactureDashboard = () => {
                   Back
                 </button>
               </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-1 items-center">
+                <label className="text-sm lg:text-lg col-span-1">
+                  Select Shop
+                </label>
+                <select
+                  name="shop"
+                  id="shop"
+                  value={foodFormData.shop}
+                  onChange={foodChangeHandler}
+                  required
+                  className="border rounded-sm px-2 py-1"
+                >
+                  <option value="">Select Shop</option>
+                  {shopNames &&
+                    shopNames?.data?.map((shop) => (
+                      <option key={shop._id} value={shop._id}>
+                        {shop.shopName}
+                      </option>
+                    ))}
+                </select>
+              </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-1 items-center">
                 <label className="text-sm lg:text-lg col-span-1">
                   Add Food Image
                 </label>
                 <input
                   required
+                  name="image"
+                  value={foodFormData.image}
+                  onChange={foodChangeHandler}
                   className="border pl-4 col-span-2 py-1 lg:py-2 rounded-sm w-full"
                   type="text"
                 />
@@ -285,6 +362,9 @@ const ResturantManufactureDashboard = () => {
                 </label>
                 <input
                   required
+                  name="productName"
+                  value={foodFormData.productName}
+                  onChange={foodChangeHandler}
                   className="border pl-4 col-span-2 py-1 lg:py-2 rounded-sm w-full"
                   type="text"
                 />
@@ -296,6 +376,9 @@ const ResturantManufactureDashboard = () => {
                 </label>
                 <input
                   required
+                  name="productPrice"
+                  value={foodFormData.productPrice}
+                  onChange={foodChangeHandler}
                   className="border pl-4 col-span-2 py-1 lg:py-2 rounded-sm w-full"
                   type="text"
                 />
@@ -307,6 +390,9 @@ const ResturantManufactureDashboard = () => {
                 </label>
                 <input
                   required
+                  name="description"
+                  value={foodFormData.description}
+                  onChange={foodChangeHandler}
                   className="border pl-4 col-span-2 py-1 lg:py-2 rounded-sm w-full"
                   type="text"
                 />
@@ -318,6 +404,9 @@ const ResturantManufactureDashboard = () => {
                 </label>
                 <input
                   required
+                  name="productIncludes"
+                  value={foodFormData.productIncludes}
+                  onChange={foodChangeHandler}
                   className="border pl-4 col-span-2 py-1 lg:py-2 rounded-sm w-full"
                   type="text"
                 />

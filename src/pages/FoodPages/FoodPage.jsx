@@ -3,12 +3,29 @@ import food from "../../images/food.png";
 import logo from "../../images/logo.png";
 import { useParams } from "react-router-dom";
 import { useGetFoodQuery } from "../../slices/resturantManufactureApiSlice";
+import toast from "react-hot-toast";
+import { useBuyProductMutation } from "../../slices/userApiSlice";
 
 function FoodPage() {
   const params = useParams();
 
   const { data: food, isLoading, error } = useGetFoodQuery(params.foodId);
-  console.log(food);
+
+  const [buyProduct] = useBuyProductMutation();
+
+  const buyFood = async () => {
+    const payload = {
+      foodId: params.foodId,
+    };
+    try {
+      const response = await buyProduct(payload);
+      if (response?.data?.success) {
+        toast.success(response?.data?.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="px-10 py-4 w-full h-screen">
       <div className="flex items-center h-[10%] justify-start gap-8">
@@ -27,7 +44,10 @@ function FoodPage() {
             <p className="text-sm text-gray-400">{food.data?.description}</p>
             <h2 className="text-md font-bold">$ {food.data?.productPrice}</h2>
 
-            <button className="px-8 py-2 bg-[#5FAA46] rounded-2xl text-white">
+            <button
+              onClick={buyFood}
+              className="px-8 py-2 bg-[#5FAA46] rounded-2xl text-white"
+            >
               Buy
             </button>
           </div>

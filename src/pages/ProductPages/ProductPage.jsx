@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../images/logo.png";
-import potato from "../../images/potato.png";
 import { useParams } from "react-router-dom";
 import { useGetProductQuery } from "../../slices/productManufactureApiSlice";
+import { useBuyProductMutation } from "../../slices/userApiSlice";
+import toast from "react-hot-toast";
 
 function ProductPage() {
   const params = useParams();
@@ -11,6 +12,38 @@ function ProductPage() {
     isLoading,
     error,
   } = useGetProductQuery(params.productId);
+
+  const [buyProduct] = useBuyProductMutation();
+
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (type) => {
+    if (type === "increase") {
+      setQuantity((prev) => prev + 1);
+    } else if (type === "decrease" && quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
+
+  const handleBuyNow = async () => {
+    if (product?.data) {
+      const payload = {
+        productId: params.productId,
+        qty: quantity,
+      };
+
+      try {
+        const response = await buyProduct(payload);
+        if (response) {
+          toast.success(response?.data?.message);
+          setQuantity(1);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="px-10 py-4 w-full h-screen">
       <div className="flex h-[10%] items-center justify-start gap-8">
@@ -30,17 +63,26 @@ function ProductPage() {
             <div className="flex items-center gap-8">
               <h2 className="font-bold">Rs: {product.data?.productPrice}</h2>
               <div className="flex items-center gap-4">
-                <button className="bg-[#6BB62D] px-4 py-1 text-white text-lg rounded-lg">
+                <button
+                  className="bg-[#6BB62D] px-4 py-1 text-white text-lg rounded-lg"
+                  onClick={() => handleQuantityChange("decrease")}
+                >
                   -
                 </button>
-                <p>1</p>
-                <button className="bg-[#6BB62D] px-4 py-1 text-white text-lg rounded-lg">
+                <p>{quantity}</p>
+                <button
+                  className="bg-[#6BB62D] px-4 py-1 text-white text-lg rounded-lg"
+                  onClick={() => handleQuantityChange("increase")}
+                >
                   +
                 </button>
               </div>
             </div>
 
-            <button className="bg-[#6BB62D] px-4 py-2 text-white text-md rounded-lg">
+            <button
+              className="bg-[#6BB62D] px-4 py-2 text-white text-md rounded-lg"
+              onClick={handleBuyNow}
+            >
               Buy Now
             </button>
           </div>
